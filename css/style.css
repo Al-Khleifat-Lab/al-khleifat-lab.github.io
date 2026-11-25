@@ -1,24 +1,23 @@
 /* =========================================================
    BIODOT Lab — site styles
-   Colours come straight from the BIODOT logo.
+   Violet and teal palette, round shapes taken from the dot in the logo.
    ========================================================= */
 :root {
-  --aubergine: #2E1A47;   /* "BIO", the hexagon, header bar */
-  --violet:    #5B3FA8;   /* "D" and "T", links */
-  --lavender:  #B9A6F0;   /* the brain waves */
-  --dot:       #7C5CD6;   /* the dot in the logo */
-  --dot-light: #C9B8F7;   /* the dot on dark backgrounds */
-  --paper:     #FAF8FC;   /* logo background */
-  --mist:      #EFEAF7;   /* soft panels */
-  --ink:       #241536;
-  --muted:     #5E5270;
-  --line:      #DED6EC;
+  --aubergine: #1F1B3A;   /* deep navy-violet: header, footer, headings */
+  --violet:    #5A47C8;   /* main violet: links, buttons, the D and T */
+  --lavender:  #8FD3CA;   /* light teal: small text on dark backgrounds */
+  --dot:       #2A9D92;   /* teal: the dot in the logo, focus outline, bullets */
+  --dot-light: #7FD6CB;   /* light teal: the dot on dark backgrounds */
+  --paper:     #F8F8FB;   /* page background */
+  --mist:      #E6F4F2;   /* soft mint panels */
+  --ink:       #1A1830;   /* body text */
+  --muted:     #55536A;   /* secondary text */
+  --line:      #DCDCE6;   /* borders */
 
   --head: "Manrope", "Segoe UI", system-ui, sans-serif;
   --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
 
   --wrap: 72rem;
-  --hex: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);  /* pointy-top, like the logo */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -57,7 +56,7 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.15rem; }
 .nav a {
   position: relative; display: block; padding: 0.55rem 0.75rem;
-  color: #DCD3EE; text-decoration: none; font: 600 0.95rem/1 var(--head);
+  color: #D6D5E6; text-decoration: none; font: 600 0.95rem/1 var(--head);
 }
 .nav a:hover, .nav a[aria-current="page"] { color: #fff; }
 .nav a[aria-current="page"]::after {
@@ -88,22 +87,22 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .btn-line { border: 2px solid var(--aubergine); color: var(--aubergine); }
 .btn-line:hover { background: var(--aubergine); color: #fff; }
 
-/* the honeycomb of research themes */
-.comb { width: 100%; height: auto; overflow: visible; }
-.comb .edge { stroke: var(--aubergine); stroke-width: 3; }
-.comb .node { fill: var(--aubergine); }
-.comb .cell polygon { fill: #fff; stroke: var(--aubergine); stroke-width: 3; transition: fill 0.2s; }
-.comb .cell text { font: 700 14px var(--head); fill: var(--aubergine); text-anchor: middle; pointer-events: none; }
-.comb a.cell:hover polygon, .comb a.cell:focus polygon { fill: var(--mist); }
-.comb a.cell:focus { outline: none; }
-.comb a.cell:focus-visible polygon { stroke: var(--dot); stroke-width: 5; }
-.comb .core polygon { fill: var(--aubergine); }
+/* the network of research themes: the lab at the centre, five themes around it */
+.net { width: 100%; max-width: 30rem; height: auto; overflow: visible; display: block; margin: 0 auto; }
+.net .orbit { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 8; }
+.net .edge { stroke: var(--line); stroke-width: 2; }
+.net .hub circle { fill: var(--aubergine); }
+.net a.cell circle { fill: #fff; stroke: var(--violet); stroke-width: 3; transition: fill 0.2s, stroke 0.2s; }
+.net .cell text { font: 700 14px var(--head); fill: var(--aubergine); text-anchor: middle; pointer-events: none; }
+.net a.cell:hover circle, .net a.cell:focus circle { fill: var(--mist); stroke: var(--dot); }
+.net a.cell:focus { outline: none; }
+.net a.cell:focus-visible circle { stroke: var(--dot); stroke-width: 5; }
 @media (prefers-reduced-motion: no-preference) {
-  /* one moment on load: the core appears, then the five themes join it in turn */
-  .comb .cell { opacity: 0; transform-box: fill-box; transform-origin: center; animation: join 0.5s ease-out forwards; }
+  /* one moment on load: the centre appears, then the five themes join it in turn */
+  .net .cell { opacity: 0; transform-box: fill-box; transform-origin: center; animation: join 0.5s ease-out forwards; }
   @keyframes join { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
 }
-.comb-note { font-size: 0.9rem; color: var(--muted); text-align: center; margin: 0.75rem auto 0; }
+.net-note { font-size: 0.9rem; color: var(--muted); text-align: center; margin: 0.75rem auto 0; }
 
 @media (max-width: 860px) {
   .hero { padding-top: 2.5rem; }
@@ -111,15 +110,15 @@ p { margin: 0 0 1em; max-width: 68ch; }
 }
 
 /* ---------- inner page heads ---------- */
-.page-head { background: var(--aubergine); color: #E9E3F5; padding: 3.25rem 0 2.75rem; position: relative; overflow: hidden; }
+.page-head { background: var(--aubergine); color: #E4E3EF; padding: 3.25rem 0 2.75rem; position: relative; overflow: hidden; }
 .page-head h1 { color: #fff; margin-bottom: 0.4rem; }
-.page-head p { font-size: 1.15rem; margin: 0; color: #DCD3EE; }
-.page-head::after {             /* a single hexagon from the logo, cropped at the edge */
-  content: ""; position: absolute; right: -3rem; top: 50%; width: 13rem; height: 15rem; transform: translateY(-50%);
-  clip-path: var(--hex); background: var(--violet); opacity: 0.35;
+.page-head p { font-size: 1.15rem; margin: 0; color: #D6D5E6; }
+.page-head::after {             /* the ring from the logo, cropped at the edge */
+  content: ""; position: absolute; right: -2rem; top: 50%; width: 11rem; height: 11rem; transform: translateY(-50%);
+  border: 2.2rem solid var(--violet); border-radius: 50%; opacity: 0.45;
 }
 .page-head::before {
-  content: ""; position: absolute; right: 2.8rem; top: 50%; width: 1.4rem; height: 1.4rem; margin-top: -0.7rem;
+  content: ""; position: absolute; right: 3.5rem; top: 50%; width: 2.2rem; height: 2.2rem; margin-top: -1.1rem;
   background: var(--dot-light); border-radius: 50%; z-index: 1;
 }
 @media (max-width: 640px) { .page-head::after, .page-head::before { display: none; } }
@@ -143,12 +142,12 @@ p { margin: 0 0 1em; max-width: 68ch; }
 
 /* ---------- people ---------- */
 .member-photo, .pi-photo {
-  position: relative; aspect-ratio: 0.9 / 1; background: #DDD3F4;
-  clip-path: var(--hex);              /* photos sit in the logo's hexagon */
+  position: relative; aspect-ratio: 1 / 1; background: #E6F4F2;
+  border-radius: 50%;                 /* round photos, like the dot in the logo */
   display: grid; place-items: center; overflow: hidden;
 }
 .member-photo::before, .pi-photo::before {
-  content: attr(data-initials); font: 800 2rem var(--head); color: var(--violet);
+  content: attr(data-initials); font: 800 2rem var(--head); color: var(--dot);
 }
 .member-photo img, .pi-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
@@ -215,9 +214,9 @@ p { margin: 0 0 1em; max-width: 68ch; }
 /* ---------- research ---------- */
 .theme-block { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.75rem; scroll-margin-top: 6rem; }
 .theme-block + .theme-block { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--line); }
-.theme-hex { width: 4.5rem; aspect-ratio: 0.87 / 1; clip-path: var(--hex); background: var(--aubergine); display: grid; place-items: center; }
-.theme-hex::after { content: ""; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--dot-light); }
-.theme-block:nth-child(even) .theme-hex { background: var(--violet); }
+.theme-dot { width: 4.5rem; aspect-ratio: 1; border-radius: 50%; border: 0.85rem solid var(--violet); display: grid; place-items: center; }
+.theme-dot::after { content: ""; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--dot); }
+.theme-block:nth-child(even) .theme-dot { border-color: var(--aubergine); }
 @media (max-width: 600px) { .theme-block { grid-template-columns: 1fr; gap: 1rem; } }
 
 /* ---------- publications & news ---------- */
@@ -248,12 +247,12 @@ p { margin: 0 0 1em; max-width: 68ch; }
 /* ---------- join us ---------- */
 .join-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2rem; }
 .join-grid h3 { margin-bottom: 0.4rem; }
-.contact-box { background: var(--aubergine); color: #E9E3F5; border-radius: 14px; padding: 2rem; margin-top: 2.5rem; }
+.contact-box { background: var(--aubergine); color: #E4E3EF; border-radius: 14px; padding: 2rem; margin-top: 2.5rem; }
 .contact-box h2 { color: #fff; }
 .contact-box a { color: var(--dot-light); }
 
 /* ---------- footer ---------- */
-.site-footer { background: var(--aubergine); color: #CFC5E3; padding: 3rem 0 2rem; margin-top: 0; font-size: 0.95rem; }
+.site-footer { background: var(--aubergine); color: #C9C7DC; padding: 3rem 0 2rem; margin-top: 0; font-size: 0.95rem; }
 .foot { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2rem; }
 .site-footer h2 { font-size: 1rem; color: #fff; margin-bottom: 0.6rem; }
 .site-footer a { color: #fff; }
