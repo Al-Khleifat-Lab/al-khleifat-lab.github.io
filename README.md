@@ -2,7 +2,7 @@
 
 Static site for BIODOT Lab (Dr Ahmad Al Khleifat, King's College London), hosted on GitHub Pages.
 
-Live at: https://al-khleifat-lab.github.io
+**Live site:** [al-khleifat-lab.github.io](https://al-khleifat-lab.github.io)
 
 ## Pages
 | File | Page |
@@ -17,7 +17,8 @@ Live at: https://al-khleifat-lab.github.io
 | join-us.html | How to join |
 
 ## Editing
-- People: copy an `<article class="member">` block. Put photos in `assets/people/` and add `<img src="assets/people/name.jpg" alt="Portrait of Name">` inside the `member-photo` div. Photos are cropped to a hexagon automatically, so square photos with the face centred work best.
+- People: copy an `<article class="member">` block. Put photos in `assets/people/` and add `<img src="assets/people/name.jpg" alt="Portrait of Name">` inside the `member-photo` div. Photos are cropped to a circle automatically, so square photos with the face centred work best.
 - Gallery: put photos in `assets/gallery/` and copy the `<figure>` example on the Team page.
 - The menu is repeated at the top of every page. If you add or rename a page, change it in all eight files.
 - Colours and fonts are at the top of `css/style.css`.
+- After changing `css/style.css`, bump the `?v=` number in the stylesheet link on every page (e.g. `?v=2` to `?v=3`) so browsers load the new version.
